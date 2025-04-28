@@ -8,7 +8,7 @@ use std::io::Write;
 #[test]
 fn test_cli_without_api_key() {
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("explain")
         .arg("ls -la")
         .assert()
@@ -18,7 +18,7 @@ fn test_cli_without_api_key() {
 
 #[test]
 fn test_cli_help() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("--help")
         .assert()
         .success()
@@ -31,7 +31,7 @@ fn test_cli_help() {
 
 #[test]
 fn test_cli_version() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("--version")
         .assert()
         .success()
@@ -40,7 +40,7 @@ fn test_cli_version() {
 
 #[test]
 fn test_cli_invalid_command() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("invalid")
         .assert()
         .failure()
@@ -49,7 +49,7 @@ fn test_cli_invalid_command() {
 
 #[test]
 fn test_cli_explain_without_command() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("explain")
         .assert()
         .failure()
@@ -59,7 +59,7 @@ fn test_cli_explain_without_command() {
 
 #[test]
 fn test_cli_fix_typos_without_text() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("fix-typos")
         .assert()
         .failure()
@@ -75,7 +75,7 @@ fn test_cli_summarize_with_file() {
     writeln!(file, "This is a test text to summarize.").unwrap();
 
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("summarize")
         .arg(file_path)
         .assert()
@@ -86,7 +86,7 @@ fn test_cli_summarize_with_file() {
 #[test]
 fn test_cli_summarize_with_stdin() {
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("summarize")
         .arg("--stdin")
         .write_stdin("This is a test text to summarize.")
@@ -98,7 +98,7 @@ fn test_cli_summarize_with_stdin() {
 #[test]
 fn test_cli_translate() {
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("translate")
         .arg("Hello")
         .arg("--to")
@@ -111,7 +111,7 @@ fn test_cli_translate() {
 #[test]
 fn test_cli_define() {
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("define")
         .arg("API")
         .arg("--context")
@@ -125,7 +125,7 @@ fn test_cli_define() {
 fn test_cli_list_dir() {
     let dir = tempdir().unwrap();
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("list-dir")
         .arg(dir.path())
         .assert()
@@ -141,7 +141,7 @@ fn test_cli_explain_code() {
     writeln!(file, "fn main() {{ println!(\"Hello, World!\"); }}").unwrap();
 
     env::remove_var("GEMINI_API_KEY");
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("explain-code")
         .arg(file_path)
         .arg("--language")
@@ -153,7 +153,7 @@ fn test_cli_explain_code() {
 
 #[test]
 fn test_cli_summarize_without_input() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("summarize")
         .assert()
         .failure()
@@ -162,7 +162,7 @@ fn test_cli_summarize_without_input() {
 
 #[test]
 fn test_cli_translate_without_text() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("translate")
         .arg("--to")
         .arg("fr")
@@ -174,7 +174,7 @@ fn test_cli_translate_without_text() {
 
 #[test]
 fn test_cli_define_without_term() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("define")
         .arg("--context")
         .arg("programming")
@@ -186,7 +186,7 @@ fn test_cli_define_without_term() {
 
 #[test]
 fn test_cli_explain_code_without_file() {
-    let mut cmd = Command::cargo_bin("gm").unwrap();
+    let mut cmd = Command::cargo_bin("smartui").unwrap();
     cmd.arg("explain-code")
         .arg("--language")
         .arg("Rust")
