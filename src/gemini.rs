@@ -47,7 +47,7 @@ impl RealGeminiClient {
         Ok(Self {
             client: reqwest::Client::new(),
             api_key,
-            base_url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent".to_string(),
+            base_url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent".to_string(),
         })
     }
 }
@@ -65,6 +65,7 @@ impl GeminiClientTrait for RealGeminiClient {
 
         let response = self.client
             .post(&self.base_url)
+            .header("Content-Type", "application/json")
             .query(&[("key", &self.api_key)])
             .json(&request)
             .send()
