@@ -1,6 +1,6 @@
 [package]
 name = "smartui"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Monzer Omer <monzer.a.omer@gmail.com>"]
 description = "A terminal utility that integrates with Google Gemini API"
